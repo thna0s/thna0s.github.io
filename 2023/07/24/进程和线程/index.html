@@ -16,26 +16,29 @@
   <meta name="author" content="thna0s">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近对windows漏洞感兴趣，学了一下winafl,来记录一下。 fuzz 7-zip感觉没有什么好说的，先用DynamoRIO工具来测试一下 1C:\Users\user\Desktop\DynamoRIO-Windows-9.93.19545\bin32\drrun.exe -c winafl.dll -debug -target_module 7z.exe -target_offset 0">
+    <meta name="description" content="进程进程资源 1!process 0 0 wermger.exe 来显示wermgr进程的属性  EPROCESS结构每个进程都有一个EPROCESS结构 1!process EPROCESS地址 &#x2F;&#x2F;来显示该进程的关键信息  PEB结构PEB(Process Environment Block):进程环境块。是在内核模式建立后映射到用户空间的。 1dt_PEB &#x2F;&#x2F;显示PEB结构的字段及当前值">
 <meta property="og:type" content="article">
-<meta property="og:title" content="winafl初步使用">
-<meta property="og:url" content="http://example.com/2023/07/15/winafl%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="进程和线程">
+<meta property="og:url" content="http://example.com/2023/07/24/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Thna0s">
-<meta property="og:description" content="最近对windows漏洞感兴趣，学了一下winafl,来记录一下。 fuzz 7-zip感觉没有什么好说的，先用DynamoRIO工具来测试一下 1C:\Users\user\Desktop\DynamoRIO-Windows-9.93.19545\bin32\drrun.exe -c winafl.dll -debug -target_module 7z.exe -target_offset 0">
+<meta property="og:description" content="进程进程资源 1!process 0 0 wermger.exe 来显示wermgr进程的属性  EPROCESS结构每个进程都有一个EPROCESS结构 1!process EPROCESS地址 &#x2F;&#x2F;来显示该进程的关键信息  PEB结构PEB(Process Environment Block):进程环境块。是在内核模式建立后映射到用户空间的。 1dt_PEB &#x2F;&#x2F;显示PEB结构的字段及当前值">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/1.png">
-<meta property="article:published_time" content="2023-07-15T07:16:37.854Z">
-<meta property="article:modified_time" content="2023-07-15T08:57:58.587Z">
+<meta property="og:image" content="http://example.com/images/2.png">
+<meta property="og:image" content="http://example.com/images/3.png">
+<meta property="og:image" content="http://example.com/images/4.png">
+<meta property="og:image" content="http://example.com/images/5.png">
+<meta property="article:published_time" content="2023-07-24T07:14:05.366Z">
+<meta property="article:modified_time" content="2023-07-24T07:19:43.570Z">
 <meta property="article:author" content="thna0s">
-<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/1.png">
+<meta name="twitter:image" content="http://example.com/images/2.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>winafl初步使用 - Thna0s</title>
+  <title>进程和线程 - Thna0s</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +233,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="winafl初步使用"></span>
+            <span id="subtitle" data-typed-text="进程和线程"></span>
           
         </div>
 
@@ -241,8 +244,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-15 15:16" pubdate>
-          2023年7月15日 下午
+        <time datetime="2023-07-24 15:14" pubdate>
+          2023年7月24日 下午
         </time>
       </span>
     
@@ -253,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          734 字
+          1.1k 字
         
       </span>
     
@@ -264,7 +267,7 @@
         
         
         
-          7 分钟
+          10 分钟
         
       </span>
     
@@ -309,12 +312,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">winafl初步使用</h1>
+            <h1 id="seo-header">进程和线程</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年7月15日 下午
+                    本文最后更新于：2023年7月24日 下午
                   
                 
               </p>
@@ -322,17 +325,38 @@
             
               <div class="markdown-body">
                 
-                <p>最近对windows漏洞感兴趣，学了一下winafl,来记录一下。</p>
-<h2 id="fuzz-7-zip"><a href="#fuzz-7-zip" class="headerlink" title="fuzz 7-zip"></a>fuzz 7-zip</h2><p>感觉没有什么好说的，先用DynamoRIO工具来测试一下</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">C</span>:\Users\user\Desktop\DynamoRIO-Windows-<span class="hljs-number">9</span>.<span class="hljs-number">93</span>.<span class="hljs-number">19545</span>\bin32\drrun.exe -c winafl.dll -debug -target_module <span class="hljs-number">7</span>z.exe -target_offset <span class="hljs-number">0</span>x03B9F3 -fuzz_iterations <span class="hljs-number">10</span> -nargs <span class="hljs-number">2</span> -- <span class="hljs-string">&quot;C:\Program Files (x86)\7-Zip\7z.exe&quot;</span> l C:\Users\user\Desktop\fuzz\example.img<br></code></pre></td></tr></table></figure>
+                <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程资源"><a href="#进程资源" class="headerlink" title="进程资源"></a>进程资源</h3><p><img src="/images/2.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">!process <span class="hljs-number">0</span> <span class="hljs-number">0</span> wermger.exe 来显示wermgr进程的属性<br></code></pre></td></tr></table></figure>
 
-<p>然后用</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">afl</span>-fuzz.exe -i C:\Users\user\Desktop\fuzz\<span class="hljs-number">7</span>_zip -o C:\Users\user\Desktop\fuzz\<span class="hljs-number">7</span>_out -t <span class="hljs-number">2000</span> -D C:\Users\user\Desktop\DynamoRIO-Windows-<span class="hljs-number">9</span>.<span class="hljs-number">93</span>.<span class="hljs-number">19545</span>\bin32 -- -coverage_module <span class="hljs-number">7</span>z.exe -coverage_module <span class="hljs-number">7</span>z.dll -target_module <span class="hljs-number">7</span>z.exe -target_offset <span class="hljs-number">0</span>x03B9F3 -nargs <span class="hljs-number">2</span> -- <span class="hljs-string">&quot;C:\Program Files (x86)\7-Zip\7z.exe&quot;</span> e -y @@<br></code></pre></td></tr></table></figure>
+<h3 id="EPROCESS结构"><a href="#EPROCESS结构" class="headerlink" title="EPROCESS结构"></a>EPROCESS结构</h3><p>每个进程都有一个EPROCESS结构</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">!process EPROCESS地址 <span class="hljs-comment">//来显示该进程的关键信息</span><br></code></pre></td></tr></table></figure>
 
-<p>开始fuzz。要注意这条命令需在winafl目录下，并在管理员权限下运行。</p>
-<p><img src="/images/1.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><p>这样其实效率很低，可以参考<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/216437.html">https://www.freebuf.com/articles/system/216437.html</a> 来直接fuzz对应的函数。</p>
-<p>再去读读afl源码，并做好笔记</p>
+<h3 id="PEB结构"><a href="#PEB结构" class="headerlink" title="PEB结构"></a>PEB结构</h3><p>PEB(Process Environment Block):进程环境块。是在内核模式建立后映射到用户空间的。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">dt_PEB <span class="hljs-regexp">//</span>显示PEB结构的字段及当前值<br></code></pre></td></tr></table></figure>
+
+<h3 id="快速系统调用"><a href="#快速系统调用" class="headerlink" title="快速系统调用"></a>快速系统调用</h3><p>比系统调用更快的系统调用</p>
+<h3 id="逆向调用"><a href="#逆向调用" class="headerlink" title="逆向调用"></a>逆向调用</h3><p>内核模式的代码主动调用用户模式的代码</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="ETHREAD"><a href="#ETHREAD" class="headerlink" title="ETHREAD"></a>ETHREAD</h3><p>NT内核使用ETHREAD来描述线程</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">.thread <span class="hljs-regexp">//</span>显示当前线程的ETHREAD结构地址<br>dt _ETHREAD 线程的ETHREAD结构地址 <span class="hljs-regexp">//</span>显示ETHREAD结构的内容<br>dt _KTHREAD 线程的ETHREAD结构地址 <span class="hljs-regexp">//</span>显示KTHREAD结构的内容<br>!thread 线程的ETHREAD结构地址 <br></code></pre></td></tr></table></figure>
+
+<p>ETHREAD开头的512字节是一个KTHREAD结构，称为线程控制块（TCB）主要供内核调度线程时使用。</p>
+<p>NT内核为每个CPU定义了一个处理器控制块（Processor Control Block,PRCB)</p>
+<h3 id="TEB"><a href="#TEB" class="headerlink" title="TEB"></a>TEB</h3><p>线程环境块（Thread Environment Block)：描述线程的用户空间信息，包括用户态栈，异常处理，错误码，线程局部存储等。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">!teb <span class="hljs-regexp">//</span>显示当前线程的TEB结构位置<br>dt _TEB+地址 <span class="hljs-regexp">//</span>直接观察TEB结构<br></code></pre></td></tr></table></figure>
+
+<h2 id="wow进程"><a href="#wow进程" class="headerlink" title="wow进程"></a>wow进程</h2><p>为了兼容老的32位应用程序’64位的Windows系统上可以运行32位的应用程序’这样运行在64位内核上的32位进程有—个专门的名字’叫作WOW64（Windows32onWindows64）进程</p>
+<p><img src="/images/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>32位程序需要使用的32位的Win32API和一些库函数存放在%windir%\SysWOW64目录下，%windir%\System32存放的是64位的系统文件。</p>
+<p><img src="/images/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>在Wow进程中，每个进程有2个PEB,每个线程有2个TEB,有2个栈。</p>
+<h3 id="windbg调试WoW进程"><a href="#windbg调试WoW进程" class="headerlink" title="windbg调试WoW进程"></a>windbg调试WoW进程</h3><p>具体操作参考书籍，操作时注意要使用64位的windbg，而不是windbg preview。</p>
+<h3 id="注册表重定向"><a href="#注册表重定向" class="headerlink" title="注册表重定向"></a>注册表重定向</h3><p>64位操作系统对WoW进程的注册表访问实施重定向。</p>
+<h3 id="注册表反射"><a href="#注册表反射" class="headerlink" title="注册表反射"></a>注册表反射</h3><p>对于某些COM组件有关的表键，对一个版本做的设置会自动更新到另一边</p>
+<h3 id="文件系统重定向"><a href="#文件系统重定向" class="headerlink" title="文件系统重定向"></a>文件系统重定向</h3><p>在WoW进程中，有2个NTDLL.dll，一个是64位的，另一个是32位的。当32位的WoW进程访问系统文件目录时，会被自动重定向到SysWOW64目录</p>
+<h2 id="创建进程"><a href="#创建进程" class="headerlink" title="创建进程"></a>创建进程</h2><p><img src="/images/5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="最小进程和Pico进程"><a href="#最小进程和Pico进程" class="headerlink" title="最小进程和Pico进程"></a>最小进程和Pico进程</h2><h3 id="最小进程"><a href="#最小进程" class="headerlink" title="最小进程"></a>最小进程</h3><p>在创建进程时，指定一个特殊的标志，告诉NT内核，只创建进程空间，不要自动向进程空间中添加内容。</p>
+<h3 id="Pico进程"><a href="#Pico进程" class="headerlink" title="Pico进程"></a>Pico进程</h3><p>最小进程的一个子类，通过一组接口和NT内核交互。</p>
+<hr>
 
                 
               </div>
@@ -351,7 +375,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/" class="category-chain-item">模糊测试</a>
+  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%952%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">软件调试2读书笔记</a>
   
   
 
@@ -366,7 +390,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="print-no-link">#读书笔记</a>
       
     </div>
   
@@ -378,8 +402,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>winafl初步使用</div>
-      <div>http://example.com/2023/07/15/winafl初步使用/</div>
+      <div>进程和线程</div>
+      <div>http://example.com/2023/07/24/进程和线程/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +415,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月15日</div>
+          <div>2023年7月24日</div>
         </div>
       
       
@@ -416,15 +440,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/24/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" title="进程和线程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">进程和线程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/07/15/winafl%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="winafl初步使用">
+                        <span class="hidden-mobile">winafl初步使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
