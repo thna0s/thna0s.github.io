@@ -16,26 +16,24 @@
   <meta name="author" content="thna0s">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近对windows漏洞感兴趣，学了一下winafl,来记录一下。 fuzz 7-zip感觉没有什么好说的，先用DynamoRIO工具来测试一下 1C:\Users\user\Desktop\DynamoRIO-Windows-9.93.19545\bin32\drrun.exe -c winafl.dll -debug -target_module 7z.exe -target_offset 0">
+    <meta name="description" content="以下内容只是本人的一些读书小笔记，详细内容请看书籍。 整数类型无符号整数负数在内存中都是以补码形式存放的 有符号整数浮点数类型浮点数的操作不会用到通用寄存器，而是会使用浮点协处理器的浮点寄存器，专门对浮点数进行运算处理 基本的浮点数指令字符和字符串在C++中，以’\0’作为字符串结束标记。每个字符都记录在一张表中，它们各自对应一个唯一编号，系统通过这些编号查找到对应的字符并显示 字符的编码字符的编">
 <meta property="og:type" content="article">
-<meta property="og:title" content="winafl初步使用">
-<meta property="og:url" content="http://example.com/2023/07/15/winafl%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="基本数据类型的表现形式">
+<meta property="og:url" content="http://example.com/2023/07/28/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%A1%A8%E7%8E%B0%E5%BD%A2%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Thna0s">
-<meta property="og:description" content="最近对windows漏洞感兴趣，学了一下winafl,来记录一下。 fuzz 7-zip感觉没有什么好说的，先用DynamoRIO工具来测试一下 1C:\Users\user\Desktop\DynamoRIO-Windows-9.93.19545\bin32\drrun.exe -c winafl.dll -debug -target_module 7z.exe -target_offset 0">
+<meta property="og:description" content="以下内容只是本人的一些读书小笔记，详细内容请看书籍。 整数类型无符号整数负数在内存中都是以补码形式存放的 有符号整数浮点数类型浮点数的操作不会用到通用寄存器，而是会使用浮点协处理器的浮点寄存器，专门对浮点数进行运算处理 基本的浮点数指令字符和字符串在C++中，以’\0’作为字符串结束标记。每个字符都记录在一张表中，它们各自对应一个唯一编号，系统通过这些编号查找到对应的字符并显示 字符的编码字符的编">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/1.png">
-<meta property="article:published_time" content="2023-07-15T07:16:37.854Z">
-<meta property="article:modified_time" content="2023-07-15T08:57:58.587Z">
+<meta property="article:published_time" content="2023-07-28T08:16:34.981Z">
+<meta property="article:modified_time" content="2023-07-28T08:15:47.305Z">
 <meta property="article:author" content="thna0s">
-<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>winafl初步使用 - Thna0s</title>
+  <title>基本数据类型的表现形式 - Thna0s</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="winafl初步使用"></span>
+            <span id="subtitle" data-typed-text="基本数据类型的表现形式"></span>
           
         </div>
 
@@ -241,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-15 15:16" pubdate>
-          2023年7月15日 下午
+        <time datetime="2023-07-28 16:16" pubdate>
+          2023年7月28日 下午
         </time>
       </span>
     
@@ -253,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          734 字
+          495 字
         
       </span>
     
@@ -264,7 +262,7 @@
         
         
         
-          7 分钟
+          5 分钟
         
       </span>
     
@@ -309,12 +307,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">winafl初步使用</h1>
+            <h1 id="seo-header">基本数据类型的表现形式</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：13 天前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -322,17 +320,14 @@
             
               <div class="markdown-body">
                 
-                <p>最近对windows漏洞感兴趣，学了一下winafl,来记录一下。</p>
-<h2 id="fuzz-7-zip"><a href="#fuzz-7-zip" class="headerlink" title="fuzz 7-zip"></a>fuzz 7-zip</h2><p>感觉没有什么好说的，先用DynamoRIO工具来测试一下</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">C</span>:\Users\user\Desktop\DynamoRIO-Windows-<span class="hljs-number">9</span>.<span class="hljs-number">93</span>.<span class="hljs-number">19545</span>\bin32\drrun.exe -c winafl.dll -debug -target_module <span class="hljs-number">7</span>z.exe -target_offset <span class="hljs-number">0</span>x03B9F3 -fuzz_iterations <span class="hljs-number">10</span> -nargs <span class="hljs-number">2</span> -- <span class="hljs-string">&quot;C:\Program Files (x86)\7-Zip\7z.exe&quot;</span> l C:\Users\user\Desktop\fuzz\example.img<br></code></pre></td></tr></table></figure>
-
-<p>然后用</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">afl</span>-fuzz.exe -i C:\Users\user\Desktop\fuzz\<span class="hljs-number">7</span>_zip -o C:\Users\user\Desktop\fuzz\<span class="hljs-number">7</span>_out -t <span class="hljs-number">2000</span> -D C:\Users\user\Desktop\DynamoRIO-Windows-<span class="hljs-number">9</span>.<span class="hljs-number">93</span>.<span class="hljs-number">19545</span>\bin32 -- -coverage_module <span class="hljs-number">7</span>z.exe -coverage_module <span class="hljs-number">7</span>z.dll -target_module <span class="hljs-number">7</span>z.exe -target_offset <span class="hljs-number">0</span>x03B9F3 -nargs <span class="hljs-number">2</span> -- <span class="hljs-string">&quot;C:\Program Files (x86)\7-Zip\7z.exe&quot;</span> e -y @@<br></code></pre></td></tr></table></figure>
-
-<p>开始fuzz。要注意这条命令需在winafl目录下，并在管理员权限下运行。</p>
-<p><img src="/images/1.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><p>这样其实效率很低，可以参考<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/216437.html">https://www.freebuf.com/articles/system/216437.html</a> 来直接fuzz对应的函数。</p>
-<p>再去读读afl源码，并做好笔记</p>
+                <p>以下内容只是本人的一些读书小笔记，详细内容请看书籍。</p>
+<h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><h3 id="无符号整数"><a href="#无符号整数" class="headerlink" title="无符号整数"></a>无符号整数</h3><p>负数在内存中都是以补码形式存放的</p>
+<h3 id="有符号整数"><a href="#有符号整数" class="headerlink" title="有符号整数"></a>有符号整数</h3><h2 id="浮点数类型"><a href="#浮点数类型" class="headerlink" title="浮点数类型"></a>浮点数类型</h2><p>浮点数的操作不会用到通用寄存器，而是会使用浮点协处理器的浮点寄存器，专门对浮点数进行运算处理</p>
+<h3 id="基本的浮点数指令"><a href="#基本的浮点数指令" class="headerlink" title="基本的浮点数指令"></a>基本的浮点数指令</h3><h2 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h2><p>在C++中，以’\0’作为字符串结束标记。每个字符都记录在一张表中，它们各自对应一个唯一编号，系统通过这些编号查找到对应的字符并显示</p>
+<h3 id="字符的编码"><a href="#字符的编码" class="headerlink" title="字符的编码"></a>字符的编码</h3><p>字符的编码格式分为两种：ASCII(占一字节）和Unicode（占2字节）</p>
+<h3 id="字符串的存储方式"><a href="#字符串的存储方式" class="headerlink" title="字符串的存储方式"></a>字符串的存储方式</h3><h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><h2 id="地址-指针-引用"><a href="#地址-指针-引用" class="headerlink" title="地址 指针 引用"></a>地址 指针 引用</h2><p>引用类型实际上就是指针类型，只不过用于存放地址的内存空间对使用者而言是隐藏的</p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><h3 id="define和const的区别"><a href="#define和const的区别" class="headerlink" title="#define和const的区别"></a>#define和const的区别</h3><p>#define修饰的符号名称是一个真量数值，而const修饰的栈常量，是一个“假”常量。在实际中，使用const定义的栈变量，最终还是一个变量，只是在编译期间对语法进行了检查，发现代码有对const修饰的变量存在直接修改行为则报错。</p>
+<p>被const修饰过的栈变量本质上是可以被修改的。我们可以利用指针获取const修饰过的栈变量地址，强制将const属性修饰去掉，就可以修改对应的数据内容</p>
 
                 
               </div>
@@ -351,7 +346,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/" class="category-chain-item">模糊测试</a>
+  <a href="/categories/C-%E5%8F%8D%E6%B1%87%E7%BC%96%E4%B8%8E%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">C++反汇编与逆向分析技术揭秘读书笔记</a>
   
   
 
@@ -366,7 +361,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="print-no-link">#读书笔记</a>
       
     </div>
   
@@ -378,8 +373,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>winafl初步使用</div>
-      <div>http://example.com/2023/07/15/winafl初步使用/</div>
+      <div>基本数据类型的表现形式</div>
+      <div>http://example.com/2023/07/28/基本数据类型的表现形式/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +386,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月15日</div>
+          <div>2023年7月28日</div>
         </div>
       
       
@@ -416,15 +411,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/24/windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" title="windows操作系统学习之进程和线程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">windows操作系统学习之进程和线程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/07/25/%E6%9E%B6%E6%9E%84%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%83%A8%E4%BB%B6/" title="windows操作系统学习之架构和系统部件">
+                        <span class="hidden-mobile">windows操作系统学习之架构和系统部件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
