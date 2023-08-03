@@ -19,22 +19,22 @@
     <meta name="description" content="内核空间 用户空间常规进程用户空间运行着的操作系统的一些进程  内核和HAL模块内核文件在多处理器系统的多处理器版本，64位Windows系统中原始文件名为NTKRNLMP.EXE，并·将其复制到system32目录下。 （最新版的win10好像把文件名改了，我找不到这个文件了） HAL文件和内核文件一样也有很多个版本 空闲进程空闲进程与系统进程 空闲进程的个数和系统中启用的处理器的个数是一致的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows操作系统学习之架构和系统部件">
-<meta property="og:url" content="http://example.com/2023/07/25/%E6%9E%B6%E6%9E%84%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%83%A8%E4%BB%B6/index.html">
+<meta property="og:url" content="https://thna0s.github.io/2023/07/25/%E6%9E%B6%E6%9E%84%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%83%A8%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Thna0s">
 <meta property="og:description" content="内核空间 用户空间常规进程用户空间运行着的操作系统的一些进程  内核和HAL模块内核文件在多处理器系统的多处理器版本，64位Windows系统中原始文件名为NTKRNLMP.EXE，并·将其复制到system32目录下。 （最新版的win10好像把文件名改了，我找不到这个文件了） HAL文件和内核文件一样也有很多个版本 空闲进程空闲进程与系统进程 空闲进程的个数和系统中启用的处理器的个数是一致的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/6.png">
-<meta property="og:image" content="http://example.com/images/7.png">
-<meta property="og:image" content="http://example.com/images/8.png">
-<meta property="og:image" content="http://example.com/images/9.png">
-<meta property="og:image" content="http://example.com/images/10.png">
-<meta property="og:image" content="http://example.com/images/11.png">
+<meta property="og:image" content="https://thna0s.github.io/images/6.png">
+<meta property="og:image" content="https://thna0s.github.io/images/7.png">
+<meta property="og:image" content="https://thna0s.github.io/images/8.png">
+<meta property="og:image" content="https://thna0s.github.io/images/9.png">
+<meta property="og:image" content="https://thna0s.github.io/images/10.png">
+<meta property="og:image" content="https://thna0s.github.io/images/11.png">
 <meta property="article:published_time" content="2023-07-25T03:26:40.797Z">
 <meta property="article:modified_time" content="2023-07-25T03:37:39.242Z">
 <meta property="article:author" content="thna0s">
 <meta property="article:tag" content="读书笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/6.png">
+<meta name="twitter:image" content="https://thna0s.github.io/images/6.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -78,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"NULL","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":1},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"w81EwCUHkrxPLkX4EstwvD2g-MdYXbMMI","app_key":"GbGqUNGuF94fRYRLpBY3QhJU","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"thna0s.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"NULL","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":1},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"w81EwCUHkrxPLkX4EstwvD2g-MdYXbMMI","app_key":"GbGqUNGuF94fRYRLpBY3QhJU","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -402,7 +402,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>windows操作系统学习之架构和系统部件</div>
-      <div>http://example.com/2023/07/25/架构和系统部件/</div>
+      <div>https://thna0s.github.io/2023/07/25/架构和系统部件/</div>
     </div>
     <div class="license-meta">
       
