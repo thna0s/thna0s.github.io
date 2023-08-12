@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>FOs操作系统开发之设置开机启动界面一</title>
+    <link href="/2023/08/12/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%B8%80/"/>
+    <url>/2023/08/12/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%B8%80/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>因为生活所迫，过去十多天一直没时间碰电脑，只有一些琐碎的时间可以花在电脑上，所以FOs编写的进度就慢了下来。今天总算是有时间碰电脑了。It felt great。于是就又搞了点东西。</p><p><img src="/images/b.png"></p><p>很简单，图形界面依旧没有进展，但要不了一2天，就会有突破的。</p><p>兄弟姐妹们，再见了。写操作系统去了。</p><p>具体代码链接地址：</p><p><a href="https://github.com/thna0s/Fos_process/tree/main/FOs">https://github.com/thna0s/Fos_process/tree/main/FOs</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>FOs操作系统开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>FOs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>FOs操作系统开发之环境搭建</title>
     <link href="/2023/08/03/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <url>/2023/08/03/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
