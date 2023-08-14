@@ -16,24 +16,26 @@
   <meta name="author" content="thna0s">
   <meta name="keywords" content="">
   
-    <meta name="description" content="以下内容只是本人的一些读书小笔记，详细内容请看书籍。 整数类型无符号整数负数在内存中都是以补码形式存放的 有符号整数浮点数类型浮点数的操作不会用到通用寄存器，而是会使用浮点协处理器的浮点寄存器，专门对浮点数进行运算处理 基本的浮点数指令字符和字符串在C++中，以’\0’作为字符串结束标记。每个字符都记录在一张表中，它们各自对应一个唯一编号，系统通过这些编号查找到对应的字符并显示 字符的编码字符的编">
+    <meta name="description" content="俺又来了，又搞了2天，呜呜，我太菜了。一直想加载bmp图片，但是事与愿为，一直在加载不起来，用别人的代码也是在裸机上显示不了。那算了，开机界面丑点就丑点吧。  然后总结一下如何写个操作系统，对于一个经验很少的菜只因来说，只能看别人的代码，自己去手写难度有点大。看完别人的，再CV到自己的工程。很nice。 那么，总而言之，启动界面就告一段时间了，去看谭玉刚老师的代码去了，不管怎么样，总算到了加载内核">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基本数据类型的表现形式">
-<meta property="og:url" content="https://thna0s.github.io/2023/07/28/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%A1%A8%E7%8E%B0%E5%BD%A2%E5%BC%8F/index.html">
+<meta property="og:title" content="FOs操作系统开发之环境搭建">
+<meta property="og:url" content="https://thna0s.github.io/2023/08/14/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%BA%8C/index.html">
 <meta property="og:site_name" content="Thna0s">
-<meta property="og:description" content="以下内容只是本人的一些读书小笔记，详细内容请看书籍。 整数类型无符号整数负数在内存中都是以补码形式存放的 有符号整数浮点数类型浮点数的操作不会用到通用寄存器，而是会使用浮点协处理器的浮点寄存器，专门对浮点数进行运算处理 基本的浮点数指令字符和字符串在C++中，以’\0’作为字符串结束标记。每个字符都记录在一张表中，它们各自对应一个唯一编号，系统通过这些编号查找到对应的字符并显示 字符的编码字符的编">
+<meta property="og:description" content="俺又来了，又搞了2天，呜呜，我太菜了。一直想加载bmp图片，但是事与愿为，一直在加载不起来，用别人的代码也是在裸机上显示不了。那算了，开机界面丑点就丑点吧。  然后总结一下如何写个操作系统，对于一个经验很少的菜只因来说，只能看别人的代码，自己去手写难度有点大。看完别人的，再CV到自己的工程。很nice。 那么，总而言之，启动界面就告一段时间了，去看谭玉刚老师的代码去了，不管怎么样，总算到了加载内核">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-28T08:16:34.981Z">
-<meta property="article:modified_time" content="2023-07-28T08:15:47.305Z">
+<meta property="og:image" content="https://thna0s.github.io/images/boot.png">
+<meta property="article:published_time" content="2023-08-14T06:35:45.171Z">
+<meta property="article:modified_time" content="2023-08-14T06:39:24.228Z">
 <meta property="article:author" content="thna0s">
-<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="FOs">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thna0s.github.io/images/boot.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>基本数据类型的表现形式 - Thna0s</title>
+  <title>FOs操作系统开发之环境搭建 - Thna0s</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -233,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基本数据类型的表现形式"></span>
+            <span id="subtitle" data-typed-text="FOs操作系统开发之环境搭建"></span>
           
         </div>
 
@@ -244,8 +246,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-28 16:16" pubdate>
-          2023年7月28日 下午
+        <time datetime="2023-08-14 14:35" pubdate>
+          2023年8月14日 下午
         </time>
       </span>
     
@@ -256,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          495 字
+          202 字
         
       </span>
     
@@ -267,7 +269,7 @@
         
         
         
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -312,12 +314,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基本数据类型的表现形式</h1>
+            <h1 id="seo-header">FOs操作系统开发之环境搭建</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：17 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -325,14 +327,10 @@
             
               <div class="markdown-body">
                 
-                <p>以下内容只是本人的一些读书小笔记，详细内容请看书籍。</p>
-<h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><h3 id="无符号整数"><a href="#无符号整数" class="headerlink" title="无符号整数"></a>无符号整数</h3><p>负数在内存中都是以补码形式存放的</p>
-<h3 id="有符号整数"><a href="#有符号整数" class="headerlink" title="有符号整数"></a>有符号整数</h3><h2 id="浮点数类型"><a href="#浮点数类型" class="headerlink" title="浮点数类型"></a>浮点数类型</h2><p>浮点数的操作不会用到通用寄存器，而是会使用浮点协处理器的浮点寄存器，专门对浮点数进行运算处理</p>
-<h3 id="基本的浮点数指令"><a href="#基本的浮点数指令" class="headerlink" title="基本的浮点数指令"></a>基本的浮点数指令</h3><h2 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h2><p>在C++中，以’\0’作为字符串结束标记。每个字符都记录在一张表中，它们各自对应一个唯一编号，系统通过这些编号查找到对应的字符并显示</p>
-<h3 id="字符的编码"><a href="#字符的编码" class="headerlink" title="字符的编码"></a>字符的编码</h3><p>字符的编码格式分为两种：ASCII(占一字节）和Unicode（占2字节）</p>
-<h3 id="字符串的存储方式"><a href="#字符串的存储方式" class="headerlink" title="字符串的存储方式"></a>字符串的存储方式</h3><h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><h2 id="地址-指针-引用"><a href="#地址-指针-引用" class="headerlink" title="地址 指针 引用"></a>地址 指针 引用</h2><p>引用类型实际上就是指针类型，只不过用于存放地址的内存空间对使用者而言是隐藏的</p>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><h3 id="define和const的区别"><a href="#define和const的区别" class="headerlink" title="#define和const的区别"></a>#define和const的区别</h3><p>#define修饰的符号名称是一个真量数值，而const修饰的栈常量，是一个“假”常量。在实际中，使用const定义的栈变量，最终还是一个变量，只是在编译期间对语法进行了检查，发现代码有对const修饰的变量存在直接修改行为则报错。</p>
-<p>被const修饰过的栈变量本质上是可以被修改的。我们可以利用指针获取const修饰过的栈变量地址，强制将const属性修饰去掉，就可以修改对应的数据内容</p>
+                <p>俺又来了，又搞了2天，呜呜，我太菜了。一直想加载bmp图片，但是事与愿为，一直在加载不起来，用别人的代码也是在裸机上显示不了。那算了，开机界面丑点就丑点吧。</p>
+<p><img src="/images/boot.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后总结一下如何写个操作系统，对于一个经验很少的菜只因来说，只能看别人的代码，自己去手写难度有点大。看完别人的，再CV到自己的工程。很nice。</p>
+<p>那么，总而言之，启动界面就告一段时间了，去看谭玉刚老师的代码去了，不管怎么样，总算到了加载内核的时间了。</p>
 
                 
               </div>
@@ -351,7 +349,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/C-%E5%8F%8D%E6%B1%87%E7%BC%96%E4%B8%8E%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">C++反汇编与逆向分析技术揭秘读书笔记</a>
+  <a href="/categories/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/" class="category-chain-item">FOs操作系统开发</a>
   
   
 
@@ -366,7 +364,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="print-no-link">#读书笔记</a>
+        <a href="/tags/FOs/" class="print-no-link">#FOs</a>
       
     </div>
   
@@ -378,8 +376,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基本数据类型的表现形式</div>
-      <div>https://thna0s.github.io/2023/07/28/基本数据类型的表现形式/</div>
+      <div>FOs操作系统开发之环境搭建</div>
+      <div>https://thna0s.github.io/2023/08/14/FOs操作系统开发之设置开机启动界面二/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +389,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月28日</div>
+          <div>2023年8月14日</div>
         </div>
       
       
@@ -416,18 +414,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/03/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="FOs操作系统开发之环境搭建">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FOs操作系统开发之环境搭建</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/25/%E6%9E%B6%E6%9E%84%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%83%A8%E4%BB%B6/" title="windows操作系统学习之架构和系统部件">
-                        <span class="hidden-mobile">windows操作系统学习之架构和系统部件</span>
+                      <a href="/2023/08/12/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%B8%80/" title="FOs操作系统开发之设置开机启动界面一">
+                        <span class="hidden-mobile">FOs操作系统开发之设置开机启动界面一</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

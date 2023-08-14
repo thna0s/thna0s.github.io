@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>FOs操作系统开发之环境搭建</title>
+    <link href="/2023/08/14/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%BA%8C/"/>
+    <url>/2023/08/14/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%BA%8C/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>俺又来了，又搞了2天，呜呜，我太菜了。一直想加载bmp图片，但是事与愿为，一直在加载不起来，用别人的代码也是在裸机上显示不了。那算了，开机界面丑点就丑点吧。</p><p><img src="/images/boot.png"></p><p>然后总结一下如何写个操作系统，对于一个经验很少的菜只因来说，只能看别人的代码，自己去手写难度有点大。看完别人的，再CV到自己的工程。很nice。</p><p>那么，总而言之，启动界面就告一段时间了，去看谭玉刚老师的代码去了，不管怎么样，总算到了加载内核的时间了。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>FOs操作系统开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>FOs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>FOs操作系统开发之设置开机启动界面一</title>
     <link href="/2023/08/12/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%B8%80/"/>
     <url>/2023/08/12/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%B8%80/</url>
