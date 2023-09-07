@@ -16,25 +16,36 @@
   <meta name="author" content="thna0s">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Thna0s的个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://thna0s.github.io/categories/index.html">
+    <meta name="description" content="想挖浏览器的洞，找了一下午资料，然后看到一个搭建v8环境的，没错要搭建v8环境，第一次搭建v8环境是因为网络问题没搭成功，第二次是v8编译的时候电脑配置太低，卡住了。今天看到那篇熟悉的v8环境搭建的文章，又想到自己之前搭建环境编译时卡住的画面，算了，退坑了，等以后换台好电脑再来搞。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="v8调试环境搭建">
+<meta property="og:url" content="https://thna0s.github.io/2023/09/07/v8%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="Thna0s">
-<meta property="og:description" content="Thna0s的个人博客">
+<meta property="og:description" content="想挖浏览器的洞，找了一下午资料，然后看到一个搭建v8环境的，没错要搭建v8环境，第一次搭建v8环境是因为网络问题没搭成功，第二次是v8编译的时候电脑配置太低，卡住了。今天看到那篇熟悉的v8环境搭建的文章，又想到自己之前搭建环境编译时卡住的画面，算了，退坑了，等以后换台好电脑再来搞。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://thna0s.github.io/images/%E5%9B%BE%E4%B8%80%E4%B9%90.png">
+<meta property="article:published_time" content="2023-09-07T11:42:36.694Z">
+<meta property="article:modified_time" content="2023-09-07T11:45:06.838Z">
 <meta property="article:author" content="thna0s">
+<meta property="article:tag" content="chrome漏洞挖掘">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thna0s.github.io/images/%E5%9B%BE%E4%B8%80%E4%B9%90.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>分类 - Thna0s</title>
+  <title>v8调试环境搭建 - Thna0s</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -218,15 +229,63 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/t.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/thna0s.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分类"></span>
+            <span id="subtitle" data-typed-text="v8调试环境搭建"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-07 19:42" pubdate>
+          2023年9月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          141 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
 
         
       </div>
@@ -242,318 +301,217 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">v8调试环境搭建</h1>
+            
+              <p class="note note-info">
                 
+                  
+                    本文最后更新于：几秒前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>想挖浏览器的洞，找了一下午资料，然后看到一个搭建v8环境的，没错要搭建v8环境，第一次搭建v8环境是因为网络问题没搭成功，第二次是v8编译的时候电脑配置太低，卡住了。今天看到那篇熟悉的v8环境搭建的文章，又想到自己之前搭建环境编译时卡住的画面，算了，退坑了，等以后换台好电脑再来搞。</p>
+<p><img src="/images/%E5%9B%BE%E4%B8%80%E4%B9%90.png" srcset="/img/loading.gif" lazyload></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
-
-
-
-<div class="category-list">
+<span class="category-chains">
   
   
     
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="FOs操作系统开发"
-        id="heading-877877f531c7b252d41bcc69cfc05b89" role="tab" data-toggle="collapse" href="#collapse-877877f531c7b252d41bcc69cfc05b89"
-        aria-expanded="false"
-      >
-        FOs操作系统开发
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-877877f531c7b252d41bcc69cfc05b89"
-           role="tabpanel" aria-labelledby="heading-877877f531c7b252d41bcc69cfc05b89">
+      <span class="category-chain">
         
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/08/14/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%BA%8C/" title="FOs操作系统开发之设置开机启动界面二"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">FOs操作系统开发之设置开机启动界面二</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/08/12/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2%E4%B8%80/" title="FOs操作系统开发之设置开机启动界面一"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">FOs操作系统开发之设置开机启动界面一</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/08/03/FOs%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="FOs操作系统开发之环境搭建"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">FOs操作系统开发之环境搭建</span>
-        </a>
-      
-    
-  </div>
+  <a href="/categories/%E5%A4%A7%E4%BD%AC%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0/" class="category-chain-item">大佬成长日记</a>
+  
+  
 
-        
-      </div>
+      </span>
+    
+  
+</span>
+
     </div>
   
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="软件调试2读书笔记"
-        id="heading-47961b3da44a39c55db6839330d2b73f" role="tab" data-toggle="collapse" href="#collapse-47961b3da44a39c55db6839330d2b73f"
-        aria-expanded="false"
-      >
-        软件调试2读书笔记
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%952%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-47961b3da44a39c55db6839330d2b73f"
-           role="tabpanel" aria-labelledby="heading-47961b3da44a39c55db6839330d2b73f">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/07/25/%E6%9E%B6%E6%9E%84%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%83%A8%E4%BB%B6/" title="windows操作系统学习之架构和系统部件"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">windows操作系统学习之架构和系统部件</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/07/24/windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" title="windows操作系统学习之进程和线程"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">windows操作系统学习之进程和线程</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
   
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="大佬成长日记"
-        id="heading-bf6ab5c497bff304e0ce5808c4e63b4f" role="tab" data-toggle="collapse" href="#collapse-bf6ab5c497bff304e0ce5808c4e63b4f"
-        aria-expanded="false"
-      >
-        大佬成长日记
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-        <a href="/categories/%E5%A4%A7%E4%BD%AC%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
+        <a href="/tags/chrome%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" class="print-no-link">#chrome漏洞挖掘</a>
       
-      <div class="category-collapse collapse " id="collapse-bf6ab5c497bff304e0ce5808c4e63b4f"
-           role="tabpanel" aria-labelledby="heading-bf6ab5c497bff304e0ce5808c4e63b4f">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/09/07/v8%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="v8调试环境搭建"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">v8调试环境搭建</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/08/25/windows%E6%BC%8F%E6%B4%9E8.25%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/" title="8.25学习日记"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">8.25学习日记</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="模糊测试"
-        id="heading-ae194560e9fe75faa70ff565c310a573" role="tab" data-toggle="collapse" href="#collapse-ae194560e9fe75faa70ff565c310a573"
-        aria-expanded="false"
-      >
-        模糊测试
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-ae194560e9fe75faa70ff565c310a573"
-           role="tabpanel" aria-labelledby="heading-ae194560e9fe75faa70ff565c310a573">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/07/15/winafl%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="winafl初步使用"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">winafl初步使用</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="C++反汇编与逆向分析技术揭秘读书笔记"
-        id="heading-5a817d22fbd43639410aee10fd28af8d" role="tab" data-toggle="collapse" href="#collapse-5a817d22fbd43639410aee10fd28af8d"
-        aria-expanded="false"
-      >
-        C++反汇编与逆向分析技术揭秘读书笔记
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/C-%E5%8F%8D%E6%B1%87%E7%BC%96%E4%B8%8E%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-5a817d22fbd43639410aee10fd28af8d"
-           role="tabpanel" aria-labelledby="heading-5a817d22fbd43639410aee10fd28af8d">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/07/28/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%A1%A8%E7%8E%B0%E5%BD%A2%E5%BC%8F/" title="基本数据类型的表现形式"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">基本数据类型的表现形式</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="成为黑客"
-        id="heading-a0038e44f80fbf4705cdefb13729fa30" role="tab" data-toggle="collapse" href="#collapse-a0038e44f80fbf4705cdefb13729fa30"
-        aria-expanded="false"
-      >
-        成为黑客
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%88%90%E4%B8%BA%E9%BB%91%E5%AE%A2/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-a0038e44f80fbf4705cdefb13729fa30"
-           role="tabpanel" aria-labelledby="heading-a0038e44f80fbf4705cdefb13729fa30">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/08/17/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%BC%80%E7%AF%87/" title="漏洞挖掘开篇"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">漏洞挖掘开篇</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
     </div>
   
 </div>
 
 
-              </div>
-            </div>
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>v8调试环境搭建</div>
+      <div>https://thna0s.github.io/2023/09/07/v8调试环境搭建/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>thna0s</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              归THNA0S所有
+            
           </div>
         </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/25/windows%E6%BC%8F%E6%B4%9E8.25%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/" title="8.25学习日记">
+                        <span class="hidden-mobile">8.25学习日记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"w81EwCUHkrxPLkX4EstwvD2g-MdYXbMMI","appKey":"GbGqUNGuF94fRYRLpBY3QhJU","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
       </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
     
@@ -671,6 +629,99 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script defer src="/js/leancloud.js" ></script>
 

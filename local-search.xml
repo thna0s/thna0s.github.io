@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>v8调试环境搭建</title>
+    <link href="/2023/09/07/v8%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <url>/2023/09/07/v8%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>想挖浏览器的洞，找了一下午资料，然后看到一个搭建v8环境的，没错要搭建v8环境，第一次搭建v8环境是因为网络问题没搭成功，第二次是v8编译的时候电脑配置太低，卡住了。今天看到那篇熟悉的v8环境搭建的文章，又想到自己之前搭建环境编译时卡住的画面，算了，退坑了，等以后换台好电脑再来搞。</p><p><img src="/images/%E5%9B%BE%E4%B8%80%E4%B9%90.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>大佬成长日记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>chrome漏洞挖掘</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>8.25学习日记</title>
     <link href="/2023/08/25/windows%E6%BC%8F%E6%B4%9E8.25%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
     <url>/2023/08/25/windows%E6%BC%8F%E6%B4%9E8.25%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/</url>
